@@ -56,6 +56,18 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "dartz",
+      "rootUri": "file:///Users/sumitkakshapati/.pub-cache/hosted/pub.dev/dartz-0.10.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "dio",
+      "rootUri": "file:///Users/sumitkakshapati/.pub-cache/hosted/pub.dev/dio-5.1.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.15"
+    },
+    {
       "name": "email_validator",
       "rootUri": "file:///Users/sumitkakshapati/.pub-cache/hosted/pub.dev/email_validator-2.1.17",
       "packageUri": "lib/",
@@ -302,7 +314,7 @@
       "languageVersion": "2.18"
     }
   ],
-  "generated": "2023-04-25T02:45:37.309470Z",
+  "generated": "2023-05-01T16:04:06.682145Z",
   "generator": "pub",
-  "generatorVersion": "2.19.6"
+  "generatorVersion": "2.19.1"
 }
