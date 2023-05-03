@@ -1,12 +1,29 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:ecommerce_app/common/constants.dart';
+import 'package:ecommerce_app/common/shared_preference/shared_pref_util.dart';
 import 'package:ecommerce_app/features/auth/model/user.dart';
 
 class UserRepository {
   User? _user;
 
   User? get user => _user;
+
+  String? _userToken;
+
+  String? get userToken => _userToken;
+
+  Future<void> init() async {
+    _userToken = await SharedPrefUtils.getToken();
+    _user = await SharedPrefUtils.getUser();
+  }
+
+  Future<void> logout() async {
+    _user = null;
+    _userToken = null;
+    await SharedPrefUtils.deleteToken();
+    await SharedPrefUtils.deleteUser();
+  }
 
   Future<Either<String, User>> login(
       {required String email, required String password}) async {
@@ -20,6 +37,10 @@ class UserRepository {
         data: _body,
       );
       final User _tempUser = User.fromMap(_res.data["results"]);
+      final String _tempUserToken = _res.data["token"];
+      SharedPrefUtils.saveToken(_tempUserToken);
+      SharedPrefUtils.saveUser(_tempUser);
+      _userToken = _tempUserToken;
       _user = _tempUser;
       return Right(_tempUser);
     } on DioError catch (e) {
@@ -50,7 +71,7 @@ class UserRepository {
       );
       return Right(true);
     } on DioError catch (e) {
-      return Left(e.response?.data["message"] ?? "Unable to login");
+      return Left(e.response?.data["message"] ?? "Unable to signup");
     } catch (e) {
       return Left(e.toString());
     }

@@ -22,4 +22,14 @@ class User {
       address: map["address"],
     );
   }
+
+  Map<String, dynamic> toMap() {
+    return {
+      "_id": id,
+      "name": name,
+      "email": email,
+      "phone": phone,
+      "address": address,
+    };
+  }
 }

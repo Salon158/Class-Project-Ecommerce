@@ -1,11 +1,13 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:ecommerce_app/common/custom_theme.dart';
+import 'package:ecommerce_app/features/auth/resources/user_respository.dart';
 import 'package:ecommerce_app/features/auth/ui/screens/login_page.dart';
 import 'package:ecommerce_app/features/cart/ui/screens/cart_page.dart';
 import 'package:ecommerce_app/features/homepage/ui/screens/homepage_screens.dart';
 import 'package:ecommerce_app/features/orders/ui/screens/order_screens.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -34,10 +36,13 @@ class _DashboardWidgetsState extends State<DashboardWidgets> {
         actions: [
           IconButton(
             onPressed: () {
+              RepositoryProvider.of<UserRepository>(context).logout();
               Navigator.pushAndRemoveUntil(
                 context,
                 PageTransition(
-                    child: LoginPage(), type: PageTransitionType.fade),
+                  child: LoginPage(),
+                  type: PageTransitionType.fade,
+                ),
                 (route) => false,
               );
             },

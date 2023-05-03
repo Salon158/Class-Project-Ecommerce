@@ -23,9 +23,9 @@ class LoginWidgets extends StatefulWidget {
 
 class _LoginWidgetsState extends State<LoginWidgets> {
   final TextEditingController _emailController =
-      TextEditingController(text: "user@user.com");
+      TextEditingController(text: "test@test.com");
   final TextEditingController _passwordController =
-      TextEditingController(text: "12345678");
+      TextEditingController(text: "password");
 
   bool _isLoading = false;
 
